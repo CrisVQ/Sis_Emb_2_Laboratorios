@@ -1,0 +1,81 @@
+# mkdir anidado
+
+mkdir -p 'ice cream 2023'/{'water flavors'/{cinnabon,apple,pineapple},'milk flavors'/{chocolate,cappuccino}}
+# Ver el arbol de directorios
+tree 'ice cream 2023'
+
+# Crear texto
+
+echo "Black" > color.txt
+mkdir colors
+mv color.txt colors
+cd colors
+echo "White" >> color.txt
+cat color.txt
+
+# nombre
+
+echo "Cristian" > name.txt
+mkdir -p 'student registery'
+cp name.txt 'student registry'
+gedit name.txt
+
+
+#Primero creamos el grupo de usuarios para agregar los usuarios
+
+sudo groupadd Distribution
+
+#Despues para crear un usuario podemos usar el siguiente codigo
+# La opcion -m nos permite crear un directorio home que pernezca al nuevo usuario
+# -G opcion para agregar el usuario a un grupo
+# -s Especifica que shell utilizara el nuevo usuario
+
+sudo useradd -m -G Distribution -s /bin/bash Company
+sudo useradd -m -G Distribution -s /bin/bash Engineer
+sudo useradd -m -G Distribution -s /bin/bash Operator
+
+#asignamos la contraseña para el usuario nuevo
+
+sudo passwd Company
+sudo passwd Engineer
+sudo passwd Operator
+
+#Lo agregamos el usuario al gurpo sudo
+
+sudo usermod -aG sudo Company
+
+#verificamos los permisos del usuario company
+
+sudo -l -U Company 
+
+# Hacemos lo mimso para los demas
+
+# Parte 2
+
+# Crear la carpeta principal y subdirectorios
+mkdir "Designed tasks"
+cd "Designed tasks"
+mkdir Maintenance "Production Line" Fixes Costs
+
+# Crear y editar los archivos `dates`
+echo "Maintenance - Friday" > Maintenance/dates
+echo "Production Line - Monday to Thursday" > "Production Line/dates"
+echo "Fixes - with 2 days of anticipation" > Fixes/dates
+echo "Costs - at the end of the month" > Costs/dates
+
+# Crear el archivo `Products` y añadir productos
+echo -e "Canned Beans\nCanned Tomatoes\nCanned Corn" > Products
+
+# Crear el usuario `Supervisor`
+sudo useradd Supervisor
+
+# Añadir `Supervisor` al grupo `Distribution`
+sudo usermod -aG Distribution Supervisor
+
+# Cambiar el propietario de la carpeta `Designed tasks` a `Supervisor`
+sudo chown Supervisor
+
+# Modificar permisos del directorio `Designed tasks`
+sudo chmod 770 
+
+
